@@ -1,5 +1,6 @@
 import { AppState } from "../AppState.js";
 import { baseURL } from "../env.js"
+import { Spell } from "../models/Spell.js";
 
 
 // @ts-ignore
@@ -10,6 +11,14 @@ const dndApi = axios.create({
 
 
 class DndSpellsService{
+  async getActiveSpell(spellIndex) {
+    const response = await dndApi.get(`spells/${spellIndex}`)
+    console.log('📖📡', response.data); // 🧪 did i get the right spell ?
+    let activeSpell = new Spell(response.data)
+    console.log('✨📖', activeSpell); //🧪 did the API data map correctly to my CLASS Spell data
+    AppState.activeSpell = activeSpell
+  }
+
   async getApiSpells(){
     const response = await dndApi.get('spells')
     console.log('📚📡', response.data); //🧪 what does it's structure look like?
