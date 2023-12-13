@@ -13,6 +13,7 @@ class SandboxSpellsService{
     console.log('🐬📖', foundSpell); // 🧪 check to see if the change happened the way you expected it to
     const response = await api.put(`api/spells/${spellId}`, foundSpell) // PUT needs and Identifier in the URL to specify WHAT ITEM you want to update, and 'Update data' so it knows what has changed
     console.log('🐬📖📡', response.data);// 🧪 does the API accept the change
+    AppState.emit('sandboxSpells')
   }
   async getSandboxSpells() {
     const response = await api.get('api/spells')
