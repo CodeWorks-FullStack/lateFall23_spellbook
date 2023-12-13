@@ -1,13 +1,16 @@
-$body-bg: #e5e5e5;
+$body-bg: #000000;
 $primary: #3ba5dc;
 $secondary: #8392ab;
 $success: #00f867;
-$info: #5d0149;
-$warning: #fbcf33;
-$danger: #ea0606;
+$info: #ff30d2;
+$warning: #fbb833;
+$danger: #ea0661;
 $light: #e9ecef;
-$dark: #111927;
+$dark: #540909;
 $grey: #cbcbcb;
+
+// NOTE you can change the colors but they won't actually take effect unless you do this
+// DO NOT CHANGE ANYTHING RIGHT NOW
 
 $font-sans-serif: Open Sans;
 $font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;

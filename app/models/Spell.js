@@ -21,6 +21,8 @@ export class Spell{
 
   convertDamage(damageObj, spellLevel){
     if(damageObj == undefined) return '✨'
+    if( typeof damageObj == 'string') return damageObj
+    if(spellLevel == 0) return `🫰${damageObj.damage_at_character_level[1]} ${damageObj.damage_type.name}`
     return `☄️${damageObj.damage_at_slot_level[spellLevel]} ${damageObj.damage_type.name}`
   }
 
@@ -43,6 +45,21 @@ export class Spell{
   <button onclick="app.SandboxSpellsController.saveActiveSpell()" class="btn btn-primary" title="add ${this.name} to spellbook">Add to 📕</button>
 </div>
 `
+  }
+
+  get SpellCard(){
+    return `
+    <div class="col-4 text-center">
+      <div class="card shadow ${this.prepared ? 'bg-dark text-light' : ''}" >
+        <h3>${this.name} <input type="checkbox" ${this.prepared ? 'checked' : ''} onchange="app.SandboxSpellsController.togglePrepared('${this.id}')"/></h3>
+        <p>${this.damage}</p>
+        <b class="${this.prepared ? 'text-danger' : 'text-primary'} text-center">${this.level}🎚️ | ${this.range}🦶 | ${this.castingTime}⏲️ | ${this.duration}⏱️ | ${this.concentration ? 'requires concentration' : 'na'}🧠 | ${this.ritual ? 'Cast as ritual' : 'not a ritual'}🔮</b>
+  <p class="text-center ">${this.components} | ${this.material}</p>
+        <div role="button" class="px-2 selectable" data-bs-toggle="collapse" data-bs-target="#spell-body-${this.id}"><i class="mdi mdi-dots-horizontal"></i></div>
+        <p class="collapse text-start p-2" id="spell-body-${this.id}">${this.description}</p>
+      </div>
+    </div>
+    `
   }
 }
 
